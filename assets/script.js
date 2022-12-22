@@ -4,12 +4,19 @@
 $( document ).ready(function() {
   console.log( 'ready!' );
 
-  var saveBtn = $('#saveBtn');
+  var saveBtn = $('.saveBtn');
+  var hourId = $('#hour-9');
+
 
   saveBtn.on('click', function (event) {
     console.log('clicked')
     event.preventDefault();
 
+
+    var description = $('.description').value;
+
+    localStorage.setItem('description', description);
+    console.log(description)
   }
   
   )
