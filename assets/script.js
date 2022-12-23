@@ -13,7 +13,7 @@ $( document ).ready(function() {
     event.preventDefault();
 
 
-    var description = $('.description').value;
+    var description = $('.description').val();
 
     localStorage.setItem('description', description);
     console.log(description)
@@ -43,4 +43,7 @@ $(function () {
   // attribute of each time-block be used to do this?
   //
   // TODO: Add code to display the current date in the header of the page.
+  var currentDay = dayjs().format('DD-MM-YYYY');
+  console.log(currentDay)
+  $('#currentDay').text(currentDay);
 });
