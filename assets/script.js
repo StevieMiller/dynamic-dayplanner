@@ -1,27 +1,30 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
-$( document ).ready(function() {
-  console.log( 'ready!' );
+$(document).ready(function() {
+  console.log('ready!');
 
-  var saveBtn = $('.saveBtn');
-  var hourId = $('#hour-9');
+var saveBtn = $('.saveBtn');
+saveBtn.on('click', function (event) {
+console.log('clicked')
+event.preventDefault();
 
-
-  saveBtn.on('click', function (event) {
-    console.log('clicked')
-    event.preventDefault();
-
-
-    var description = $('.description').val();
-
-    localStorage.setItem('description', description);
-    console.log(description)
+// WHEN save button is clicked, description input is saved to local storage
+// The child element of the div id="hour-9" is the <textarea>
+var childOne = document.querySelector('#description')
+console.log(childOne)
+var parent = childOne.parentElement
+console.log(parent)
+var description = $('#hour-9').val();
+console.log(description)
+  //  var description = $('.description').val();
+  //  localStorage.setItem('description', description);
+  //  console.log(description)
   }
   
   )
 
-});
+ });
 
 $(function () {
   
