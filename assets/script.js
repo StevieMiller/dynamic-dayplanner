@@ -16,15 +16,25 @@ $(document).ready(function() {
 
     if(currentTime < element){
       // append class of past to time block
-      let pastTime = document.getElementById("hour");
+      let pastTime = document.getElementsById("hour");
       pastTime.classList.add("past");
+      pastTime.classList.remove("present");
+      pastTime.classList.remove("future");
     } else if (currentTime === element) {
       let presentTime = document.getElementById("hour");
+      presentTime.classList.remove("past");
       presentTime.classList.add("present");
+      presentTime.classList.remove("future");
     } else if (currentTime > element) {
       let futureTime = document.getElementById("hour");
+      futureTime.classList.remove("past");
+      futureTime.classList.remove("present");
       futureTime.classList.add("future");
     }
+
+// Create HTML elements using jQuery
+// Need to create code that creates time blocks for each hour
+// Need to create for loop that writes each time block
 
     }
 
@@ -35,7 +45,7 @@ $(document).ready(function() {
     
 
 
-
+  })
   const textAreaValue = document.getElementById('textArea')
   
   function saveData() {
@@ -51,17 +61,6 @@ $(document).ready(function() {
   // WHEN save button is clicked
   var saveBtn = $('.saveBtn');
   saveBtn.on('click', saveData)
-
-
-  // THEN description input is saved to local storage
-    // The child element of the div id="hour-9" is the <textarea>
-    // should I add an id of description? Or do I have to use #hour-9?
-    // If I add id="description", I can grab the <textarea>
-  var childOne = document.querySelector('#description') 
-  // console.log(childOne)
-    // If I traverse up the DOM, I can grab the parent element
-  var parent = childOne.parentElement
-  // console.log(parent)
 
   // THIS WORKS
   // var description grabs input from <textarea> and stores in local storage
@@ -80,7 +79,7 @@ $(document).ready(function() {
     // Use parent/child DOM traversal to add/remove classes and styling to/from the time slots
     // Add function(s) that apply/remove CSS styling
     // Use if/else statement to compare time-block hour to current hour
-  });
+  ;
  $(function () {
    
    // TODO: Add a listener for click events on the save button. This code should
