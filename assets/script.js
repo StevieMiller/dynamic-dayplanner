@@ -19,10 +19,24 @@ function updateColor() {
     console.log('hour-' + timeEl )
     var currentTime = dayjs().format('H')
     console.log(currentTime)
-    if (currentTime < timeEl) {
-
-    }
-  }}
+      if (currentTime < timeEl) {
+    // append class of past to time block
+    let pastTime = document.querySelectorAll("time-block");
+    pastTime.classList.add("past");
+    pastTime.classList.remove("present");
+    pastTime.classList.remove("future");
+  } else if (currentTime === timeEl) {
+    let presentTime = document.querySelectorAll("time-block");
+    presentTime.classList.remove("past");
+    presentTime.classList.add("present");
+    presentTime.classList.remove("future");
+  } else if (currentTime > timeEl) {
+    let futureTime = document.querySelectorAll("time-block");
+    futureTime.classList.remove("past");
+    futureTime.classList.remove("present");
+    futureTime.classList.add("future");
+  }
+}}
 // Create HTML elements using jQuery
 // Create a <div> with an id
 
@@ -47,6 +61,7 @@ function updateColor() {
   console.log('stored data',storedData)
   // writes storedData to page
   textAreaValue.textContent = storedData
+
 
  $(function () {
    
