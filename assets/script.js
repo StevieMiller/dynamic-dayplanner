@@ -1,14 +1,16 @@
 // Wrap all code that interacts with the DOM in a call to jQuery to ensure that
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
-var currentDay = dayjs().format('MM-DD-YYYY');
+var currentDay = dayjs().format('[Today is] dddd[,] MMMM DD[,] YYYY');
 console.log(currentDay)
 $('#currentDay').text(currentDay);
 
 $(document).ready(function() {
   console.log('ready!');
+  loadTasks();
   updateColor();
 })
+
 // array storing the hours
 let hours = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
 
@@ -19,30 +21,14 @@ function updateColor() {
     console.log('hour-' + timeEl )
     var currentTime = dayjs().format('H')
     console.log(currentTime)
-      if (currentTime < timeEl) {
-    // append class of past to time block
-    let pastTime = document.querySelectorAll("time-block");
-    pastTime.classList.add("past");
-    pastTime.classList.remove("present");
-    pastTime.classList.remove("future");
-  } else if (currentTime === timeEl) {
-    // append class of present to time block
-    let presentTime = document.querySelectorAll("time-block");
-    presentTime.classList.remove("past");
-    presentTime.classList.add("present");
-    presentTime.classList.remove("future");
-  } else if (currentTime > timeEl) {
-    // append class of future to time block
-    let futureTime = document.querySelectorAll("time-block");
-    futureTime.classList.remove("past");
-    futureTime.classList.remove("present");
-    futureTime.classList.add("future");
+    // Checks condition on time
+
   }
-}}
+}
+
 // Create HTML elements using jQuery
 // Create a <div> with an id
 
-    //next is to check condition on time
     // next is to create html element using jquery
     //next is to append class to such elements
     //next is to remove classes from elements
@@ -70,7 +56,6 @@ function loadTasks() {
   }
 }
 
-loadTasks();
 
  $(function () {
    
