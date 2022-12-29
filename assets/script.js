@@ -26,11 +26,13 @@ function updateColor() {
     pastTime.classList.remove("present");
     pastTime.classList.remove("future");
   } else if (currentTime === timeEl) {
+    // append class of present to time block
     let presentTime = document.querySelectorAll("time-block");
     presentTime.classList.remove("past");
     presentTime.classList.add("present");
     presentTime.classList.remove("future");
   } else if (currentTime > timeEl) {
+    // append class of future to time block
     let futureTime = document.querySelectorAll("time-block");
     futureTime.classList.remove("past");
     futureTime.classList.remove("present");
@@ -44,24 +46,31 @@ function updateColor() {
     // next is to create html element using jquery
     //next is to append class to such elements
     //next is to remove classes from elements
-    
-  const textAreaValue = document.querySelectorAll('.description')
   
-  function saveData() {
-    var description = $('.description').val();
-    localStorage.setItem('.description', description)
-    console.log(description)
+// Save tasks to local storage when save button is clicked
+$(".saveBtn").click(function() {
+  var tasks = [];
+  $(".description").each(function() {
+    tasks.push($(this).val());
+  });
+
+  // Save the tasks to local storage
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+});
+// Load the tasks from local storage when the page loads
+function loadTasks() {
+  // Get the tasks from local storage
+  var tasks = JSON.parse(localStorage.getItem("tasks"));
+
+  // Set the value of the input fields to the saved tasks
+  if(tasks) {
+    $(".description").each(function(index) {
+      $(this).val(tasks[index]);
+    });
   }
-  // WHEN save button is clicked
-  var saveBtn = $('.saveBtn');
-  saveBtn.on('click', saveData)
+}
 
-  // var description grabs input from <textarea> and stores in local storage
-  var storedData = localStorage.getItem('.description');
-  console.log('stored data',storedData)
-  // writes storedData to page
-  textAreaValue.textContent = storedData
-
+loadTasks();
 
  $(function () {
    
