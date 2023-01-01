@@ -11,7 +11,7 @@ let hours = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
 const mainContainer = $('#container') 
 
 
-function displayHours(){
+function displayHours() {
 
   for (let i = 0; i < hours.length; i++) {
   
@@ -33,7 +33,7 @@ function displayHours(){
 
     let colText = $("<div class='col-8 col-md-10'>")
     
-    let textArea = $("<textarea class='col-8 col-md-12 description' rows='3'>")
+    let textArea = $("<textarea class='col-12 description' rows='3'>")
     textArea.attr('id', 'textArea'+i)
 
 
@@ -64,7 +64,7 @@ function displayHours(){
     mainContainer.append(row.append(colHour, colText, colSave))
 
   }
-
+// Function that saves tasks to local storage
   $('.saveBtn').click(function() {
     console.log('click');
     var tasks = [];
@@ -88,4 +88,4 @@ function displayHours(){
 
 
 
-displayHours()
+displayHours();
