@@ -4,7 +4,7 @@
 var currentDay = dayjs().format('[Today is] dddd[,] MMMM DD[,] YYYY');
 $('#currentDay').text(currentDay);
 var currentTime = parseInt(dayjs().format('H'))
-console.log('current Time', currentTime)
+  // console.log('current Time', currentTime)
 
 let hours = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
 
@@ -19,21 +19,21 @@ function displayHours() {
 
     let colHour = $("<div class='col-sm-2 col-md-1 py-3 hour text-center'>")
 
-    let americanHours = hours[i] + ' AM';
+    let clockHours = hours[i] + ' AM';
 
     if(hours[i] >= 12){
-      americanHours = hours[i] + ' PM';
+      clockHours = hours[i] + ' PM';
       if(hours[i] >= 13){
-        americanHours = hours[i] - 12 + ' PM';
+        clockHours = hours[i] - 12 + ' PM';
       }
     }
 
-    colHour.append(americanHours)
+    colHour.append(clockHours)
 
 
     let colText = $("<div class='col-8 col-md-10'>")
     
-    let textArea = $("<textarea class='col-12 description' rows='3'>")
+    let textArea = $("<textarea class='col-12 description time-block' rows='3'>")
     textArea.attr('id', 'textArea'+i)
 
 
@@ -56,7 +56,6 @@ function displayHours() {
     let button = $("<button>")
     button.addClass("saveBtn btn fas fa-save")
     button.attr('id', 'submit'+[i])
-    button.text('')
     colSave.append(button)
 
 

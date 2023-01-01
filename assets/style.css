@@ -2,6 +2,7 @@ body {
   font-family: 'Open Sans', sans-serif;
   font-size: 16px;
   background-color: #fefae0;
+  color: #6c757d;
 }
 
 textarea {
@@ -9,8 +10,10 @@ textarea {
   border: none;
   resize: none;
   color: #000000;
-  border-left: 1px solid black;
   padding: 10px;
+}
+h1 {
+  font-family: 'Passions Conflict', cursive;
 }
 
 .description {
@@ -19,6 +22,7 @@ textarea {
 
 .time-block {
   border-radius: 15px;
+  border-left: 1px solid #6c757d;
 }
 
 .row {
@@ -27,8 +31,8 @@ textarea {
 
 .hour {
   background-color: #fefae0;
-  color: #000000;
-  border-top: 1px dashed #000000;
+  color: #6c757d;
+  border-top: 1px dotted #6c757d;
 }
 
 .past {
