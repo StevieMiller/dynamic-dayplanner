@@ -2,83 +2,90 @@
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
 var currentDay = dayjs().format('[Today is] dddd[,] MMMM DD[,] YYYY');
-console.log(currentDay)
 $('#currentDay').text(currentDay);
+var currentTime = parseInt(dayjs().format('H'))
+console.log('current Time', currentTime)
 
-$(document).ready(function() {
-  console.log('ready!');
-  loadTasks();
-  updateColor();
-})
-
-// array storing the hours
 let hours = [8, 9, 10, 11, 12, 13, 14, 15, 16, 17]
 
-function updateColor() {
-// for loop checks for the hours and index
+const mainContainer = $('#container') 
+
+
+function displayHours(){
+
   for (let i = 0; i < hours.length; i++) {
-    const timeEl = hours[i];
-    console.log('hour-' + timeEl )
-    var currentTime = dayjs().format('H')
-    console.log(currentTime)
-    // Checks condition on time
+  
+    let row = $("<div class='row'>");
+
+    let colHour = $("<div class='col-sm-2 col-md-1 py-3 hour text-center'>")
+
+    let americanHours = hours[i] + ' AM';
+
+    if(hours[i] >= 12){
+      americanHours = hours[i] + ' PM';
+      if(hours[i] >= 13){
+        americanHours = hours[i] - 12 + ' PM';
+      }
+    }
+
+    colHour.append(americanHours)
+
+
+    let colText = $("<div class='col-8 col-md-10'>")
+    
+    let textArea = $("<textarea class='col-8 col-md-12 description' rows='3'>")
+    textArea.attr('id', 'textArea'+i)
+
+
+    colText.append(textArea)
+
+    if(currentTime > hours[i]){
+      textArea.addClass('past')
+    }
+    if(currentTime < hours[i]){
+      textArea.addClass('future')
+    }
+    if(currentTime == hours[i]){
+      textArea.addClass('present')
+    }
+
+
+
+
+    let colSave = $("<div class='col-2 col-md-1'>")
+    let button = $("<button>")
+    button.addClass("saveBtn btn fas fa-save")
+    button.attr('id', 'submit'+[i])
+    button.text('')
+    colSave.append(button)
+
+
+    
+    mainContainer.append(row.append(colHour, colText, colSave))
 
   }
-}
 
-// Create HTML elements using jQuery
-// Create a <div> with an id
-
-    // next is to create html element using jquery
-    //next is to append class to such elements
-    //next is to remove classes from elements
-  
-// Save tasks to local storage when save button is clicked
-$(".saveBtn").click(function() {
-  var tasks = [];
-  $(".description").each(function() {
-    tasks.push($(this).val());
-  });
-
-  // Save the tasks to local storage
-  localStorage.setItem("tasks", JSON.stringify(tasks));
-});
-// Load the tasks from local storage when the page loads
-function loadTasks() {
-  // Get the tasks from local storage
-  var tasks = JSON.parse(localStorage.getItem("tasks"));
-
-  // Set the value of the input fields to the saved tasks
-  if(tasks) {
-    $(".description").each(function(index) {
-      $(this).val(tasks[index]);
+  $('.saveBtn').click(function() {
+    console.log('click');
+    var tasks = [];
+    $('.description').each(function() {
+      tasks.push($(this).val());
     });
+  
+    // Save the tasks to local storage
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  });
+  // Load the tasks from local storage when the page loads
+    var tasks = JSON.parse(localStorage.getItem('tasks'));
+  
+    // Set the value of the input fields to the saved tasks
+    if(tasks) {
+      $('.description').each(function(index) {
+        $(this).val(tasks[index]);
+      });
+    }
   }
-}
 
 
- $(function () {
-   
-   // TODO: Add a listener for click events on the save button. This code should
-   // use the id in the containing time-block as a key to save the user input in
-   // local storage. HINT: What does `this` reference in the click listener
-   // function? How can DOM traversal be used to get the "hour-x" id of the
-   // time-block containing the button that was clicked? How might the id be
-   // useful when saving the description in local storage?
-   //
-   // TODO: Add code to apply the past, present, or future class to each time
-   // block by comparing the id to the current hour. HINTS: How can the id
-   // attribute of each time-block be used to conditionally add or remove the
-   // past, present, and future classes? How can Day.js be used to get the
-   // current hour in 24-hour time?
-  
-   //
-   // TODO: Add code to get any user input that was saved in localStorage and set
-   // the values of the corresponding textarea elements. HINT: How can the id
-   // attribute of each time-block be used to do this?
-   //
-   // TODO: Add code to display the current date in the header of the page.
 
- });
-  
- 
+displayHours()
